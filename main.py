@@ -33,7 +33,7 @@ def main():
     parser.add_argument(
         "--from-docx",
         metavar="DOCX",
-        help="Извлечь данные тендера из входящего DOCX и сохранить в --tender",
+        help="Извлечь данные тендера из входящего DOCX и сохранить в data/tender_extracted.json",
     )
     parser.add_argument(
         "--no-validate",
@@ -42,14 +42,17 @@ def main():
     )
     args = parser.parse_args()
 
-    # Шаг 1: если передан входящий DOCX — извлечь из него tender.json
+    # Шаг 1: если передан входящий DOCX — извлечь в отдельный файл, не перезаписывая --tender
     if args.from_docx:
-        print(f"Извлечение данных из {args.from_docx}...")
         import json
+        extracted_path = "data/tender_extracted.json"
+        print(f"Извлечение данных из {args.from_docx}...")
         result = extract(args.from_docx)
-        with open(args.tender, "w", encoding="utf-8") as f:
+        with open(extracted_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
-        print(f"Сохранено: {args.tender}")
+        print(f"Сохранено: {extracted_path}")
+        print(f"Внимание: поля с null требуют ручного заполнения перед запуском генерации.")
+        args.tender = extracted_path
 
     # Шаг 2: загрузить данные
     context = load_data(args.profile, args.tender, args.calc)

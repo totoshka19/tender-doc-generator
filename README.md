@@ -34,7 +34,17 @@ pip install -r requirements.txt
 
 ## Запуск
 
-### Вариант 1 — с готовыми JSON-данными
+### Веб-интерфейс
+
+```bash
+uvicorn app:app --reload --port 8001
+```
+
+Открыть в браузере: http://127.0.0.1:8001
+
+---
+
+### CLI: Вариант 1 — с готовыми JSON-данными
 
 ```bash
 python main.py --no-validate
@@ -47,7 +57,7 @@ python main.py --no-validate
 python main.py
 ```
 
-### Вариант 2 — с автоизвлечением из входящего DOCX
+### CLI: Вариант 2 — с автоизвлечением из входящего DOCX
 
 ```bash
 python main.py --from-docx data/incoming/Запрос_ТКП_пример.docx --no-validate

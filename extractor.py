@@ -1,6 +1,4 @@
-import json
 import re
-import sys
 
 from docx import Document
 
@@ -164,20 +162,3 @@ def extract(docx_path: str) -> dict:
     }
 
 
-def main():
-    if len(sys.argv) < 2:
-        print("Использование: python extractor.py <путь_к_docx> [выходной_json]")
-        sys.exit(1)
-
-    docx_path = sys.argv[1]
-    out_path = sys.argv[2] if len(sys.argv) > 2 else "data/tender.json"
-
-    result = extract(docx_path)
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
-
-    print(f"Извлечено: {out_path}")
-
-
-if __name__ == "__main__":
-    main()

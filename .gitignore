@@ -2,3 +2,6 @@ output/
 data/tender_extracted.json
 __pycache__/
 *.pyc
+*.log
+.idea/
+.claude/

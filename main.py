@@ -1,5 +1,6 @@
 import argparse
 import io
+import json
 import sys
 from pathlib import Path
 
@@ -44,7 +45,6 @@ def main():
 
     # Шаг 1: если передан входящий DOCX — извлечь в отдельный файл, не перезаписывая --tender
     if args.from_docx:
-        import json
         extracted_path = "data/tender_extracted.json"
         print(f"Извлечение данных из {args.from_docx}...")
         result = extract(args.from_docx)

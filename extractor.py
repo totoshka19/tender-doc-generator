@@ -114,7 +114,7 @@ def extract(docx_path: str) -> dict:
     items = []
     for table in doc.tables:
         headers = [c.text.strip() for c in table.rows[0].cells]
-        if "Наименование" in headers:
+        if any("Наименование" in c for c in headers):
             items = _parse_items_table(table)
             break
 

@@ -69,7 +69,6 @@ def _check_calc(calc: dict) -> list[str]:
 
     for i, item in enumerate(items):
         price = item.get("unit_price_wo_vat")
-        qty_val = None
         line_total = item.get("line_total_wo_vat")
         if not all(isinstance(v, (int, float)) for v in [price, line_total]):
             errors.append(f"calc.items[{i}]: некорректные числовые поля")

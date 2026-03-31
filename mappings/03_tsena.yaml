@@ -1,0 +1,28 @@
+template: templates/03_Предложение_о_цене_договора_шаблон.docx
+output: output/03_Предложение_о_цене_договора.docx
+
+replacements:
+  # Параграф [1] — заголовок документа
+  "[Краткое наименование участника]": "profile.company.short_name"
+  "[ИНН]": "profile.company.inn"
+
+  # Таблица 1 — итоговые строки
+  "[Итого без НДС]": "calc.subtotal_wo_vat | money"
+  "[Сумма НДС]": "calc.vat_amount | money"
+  "[Итого с НДС]": "calc.total_with_vat | money"
+
+  # Таблица 2 — подписант
+  "[Должность подписанта]": "profile.signatory.position"
+  "[ФИО подписанта]": "profile.signatory.name_short"
+
+# Таблица 0 — строки позиций (итерируется по calc.items / tender.items)
+items_table:
+  table_index: 0
+  header_rows: 1
+  columns:
+    1: "calc_item.quote_name"
+    2: "tender_item.unit"
+    3: "tender_item.nmc_unit_price | money"
+    4: "calc_item.unit_price_wo_vat | money"
+    5: "tender_item.qty"
+    6: "calc_item.line_total_wo_vat | money"

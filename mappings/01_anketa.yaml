@@ -1,0 +1,28 @@
+template: templates/01_Анкета_участника_шаблон.docx
+output: output/01_Анкета_участника.docx
+
+replacements:
+  # Заголовок документа (параграф [1])
+  "[Краткое наименование участника]": "profile.company.short_name"
+  "[ИНН]": "profile.company.inn"
+
+  # Таблица 0 — основные реквизиты
+  "[Полное наименование участника]": "profile.company.full_name"
+  "[КПП]": "profile.company.kpp"
+  "[ОГРН]": "profile.company.ogrn"
+  "[Юридический адрес]": "profile.company.legal_address_full"
+
+  # Таблица 0 — банковские реквизиты (строка 7, многострочная ячейка)
+  "[Расчетный счет]": "profile.bank.account"
+  "[Наименование банка]": "profile.bank.name"
+  "[Корреспондентский счет]": "profile.bank.correspondent_account"
+  "[БИК]": "profile.bank.bik"
+
+  # Таблица 0 — контактное лицо (строка 8, многострочная ячейка)
+  "[Контактное лицо]": "profile.contact.responsible_name_full"
+  "[E-mail]": "profile.contact.email"
+  "[Телефон]": "profile.contact.phone"
+
+  # Таблица 1 — подписант
+  "[Должность подписанта]": "profile.signatory.position"
+  "[ФИО подписанта]": "profile.signatory.name_short"

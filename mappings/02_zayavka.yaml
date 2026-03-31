@@ -1,0 +1,17 @@
+template: templates/02_Заявка_на_участие_в_закупке_шаблон.docx
+output: output/02_Заявка_на_участие_в_закупке.docx
+
+replacements:
+  # Параграф [1] — дата и исходящий номер
+  "[Дата в формате «26» марта 2026 года]": "system.date_long"
+  "[Исх. номер заявки]": "system.outgoing_number"
+
+  # Параграф [2] — основной текст заявки
+  "[Полное наименование участника]": "profile.company.full_name"
+  "[Юридический адрес]": "profile.company.legal_address_full"
+  "[Предмет закупки]": "tender.subject"
+  "[Срок действия предложения, дней]": "tender.offer_validity_days"
+
+  # Таблица 0 — подписант
+  "[Должность подписанта]": "profile.signatory.position"
+  "[ФИО подписанта]": "profile.signatory.name_short"
